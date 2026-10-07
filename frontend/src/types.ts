@@ -1,11 +1,11 @@
 // Debe coincidir con backend/Models/Item.cs (en camelCase).
-// 👉 PASO React: agrega aquí la propiedad nueva que creaste en .NET.
 export type Item = {
   id: number;
   name: string;
   description: string;
   category: string;
   price: number;
+  level: string;
 };
 
 export type NewItem = Omit<Item, "id">;

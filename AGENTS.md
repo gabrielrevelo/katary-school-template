@@ -1,24 +1,18 @@
-# Instrucciones para el asistente de código
+# Instrucciones para agentes
 
-Este proyecto es parte de una clase de Katary School. Quien te escribe está aprendiendo: explica en español, en pocas palabras, qué vas a hacer y por qué.
+- Lee `IDEA.md` antes de cambiar el producto y alinea con ella nombres, marca y comportamiento. Actualmente está sin completar: pide al estudiante que la complete antes de implementar personalizaciones; no inventes esos datos.
+- Explica en español, brevemente, qué harás y por qué; el proyecto es una plantilla de clase.
 
-## Antes de cualquier tarea
-1. Lee **IDEA.md**: describe el proyecto del estudiante (qué es, sus elementos, el "dato extra", nombre, eslogan y color). Todo lo que construyas debe seguir esa idea.
-2. Si IDEA.md está vacío o incompleto, pídele al estudiante que lo complete antes de cambiar código.
+## Estructura y ejecución
 
-## El proyecto
-- `backend/`: API en .NET 9 (Minimal API). Corre con `dotnet run` en http://localhost:5080.
-  - `Models/Item.cs`: el modelo (un `record`). `Data/ItemStore.cs`: datos de ejemplo en memoria.
-  - `Program.cs`: endpoints `/api/items` y `/api/agent` (chat del producto).
-- `frontend/`: React + Vite + TypeScript. Corre con `npm run dev` en http://localhost:5173.
-  - `src/types.ts` debe coincidir con `Item.cs` en camelCase (`Stock` → `stock`).
-  - `src/config.ts`: nombre, eslogan y color. `src/components/ItemList.tsx`: las tarjetas.
+- `backend/`: Minimal API .NET 9; `Program.cs` registra `/api/items` y `/api/agent`. Ejecuta desde esa carpeta con `dotnet run` (HTTP `localhost:5080`). `ItemStore` conserva catálogo solo en memoria y lo reinicia con datos de ejemplo.
+- `frontend/`: React 19 + TypeScript + Vite. Ejecuta `npm install` una vez y `npm run dev` (HTTP `localhost:5173`; el puerto es estricto). El CORS de la API permite ese origen.
+- Los tipos del frontend en `src/types.ts` deben reflejar el modelo C# `backend/Models/Item.cs`; las propiedades JSON usan camelCase.
+- Personalización habitual: `backend/Data/ItemStore.cs` (datos de muestra), `backend/Agent/AgentService.cs` y `appsettings.json` (asistente), `frontend/src/config.ts` (marca), `frontend/src/components/ItemList.tsx` (tarjetas).
 
-## Reglas
-- Haz **cambios pequeños** y solo en los archivos que pide la tarea.
-- Después de cambiar el backend ejecuta `dotnet build` en `backend/`; después de cambiar el frontend ejecuta `npm run build` en `frontend/`. Corrige los errores antes de terminar.
-- No inicies servidores de larga duración (`dotnet run`, `npm run dev`): el estudiante los corre en sus propias terminales.
-- **Nunca** escribas API keys ni contraseñas en archivos. Los secretos van con `dotnet user-secrets`.
-- No hagas `git push` ni cambies de rama salvo que te lo pidan. Antes de un commit, resume los cambios.
-- Pide confirmación antes de instalar software o borrar archivos.
-- Al terminar, di qué archivos cambiaste y cómo verificarlo.
+## Verificación y secretos
+
+- Tras cambios de API: `dotnet build` desde `backend/`. Tras cambios de frontend: `npm run build` desde `frontend/` (incluye comprobación TypeScript). No hay scripts de test configurados en `frontend/package.json`.
+- No inicies servidores persistentes; deja que el estudiante ejecute `dotnet run` o `npm run dev` en su terminal.
+- Las claves del asistente van en .NET User Secrets desde `backend/` (`dotnet user-secrets set "Agent:ApiKey" "..."`), nunca en `appsettings.json` ni en commits. El README documenta Gemini y Groq.
+- No instales software ni borres archivos sin confirmación. No hagas push ni cambies de rama salvo petición; antes de un commit, resume los cambios.

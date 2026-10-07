@@ -3,7 +3,7 @@ import type { Item } from "../types";
 const money = new Intl.NumberFormat("es-CO", { style: "currency", currency: "COP", maximumFractionDigits: 0 });
 
 export function ItemList({ items, onDelete }: { items: Item[]; onDelete: (id: number) => void }) {
-  if (!items.length) return <p className="muted">Aún no hay elementos.</p>;
+  if (!items.length) return <p className="muted">Aún no hay rutinas ni clases. Agrega la primera con el formulario.</p>;
 
   return (
     <ul className="grid">
@@ -12,10 +12,10 @@ export function ItemList({ items, onDelete }: { items: Item[]; onDelete: (id: nu
           <span className="badge">{item.category}</span>
           <h3>{item.name}</h3>
           <p className="muted">{item.description}</p>
-          {/* 👉 TODO PASO React: muestra aquí tu propiedad nueva, ej: <p>Stock: {item.stock}</p> */}
+          <p className="level">Nivel: <span>{item.level}</span></p>
           <div className="card-footer">
             <strong>{money.format(item.price)}</strong>
-            <button className="link" onClick={() => onDelete(item.id)}>
+            <button className="link" aria-label={`Eliminar ${item.name}`} onClick={() => onDelete(item.id)}>
               Eliminar
             </button>
           </div>

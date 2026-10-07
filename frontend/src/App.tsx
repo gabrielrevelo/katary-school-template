@@ -27,16 +27,15 @@ export default function App() {
     <div style={{ ["--accent" as string]: config.accentColor }}>
       <header className="hero">
         <div className="container">
-          <p className="kicker">Katary Dev School</p>
-          <h1>{config.brandName}</h1>
-          <p className="tagline">{config.tagline}</p>
+          <h1>{config.brandName || "Tu gimnasio"}</h1>
+          {config.tagline && <p className="tagline">{config.tagline}</p>}
         </div>
       </header>
 
       <main className="container layout">
-        <section>
-          <h2>{config.itemsTitle}</h2>
-          {error && <p className="error">{error}</p>}
+        <section aria-labelledby="items-title">
+          <h2 id="items-title">{config.itemsTitle}</h2>
+          {error && <p className="error" role="alert">{error}</p>}
           <ItemList items={items} onDelete={(id) => api.deleteItem(id).then(load)} />
           <ItemForm onCreated={load} />
         </section>

@@ -1,8 +1,8 @@
-// 👉 PASO React: ponle la marca de TU proyecto.
+// Nombre y eslogan pendientes en IDEA.md: configúralos aquí cuando los elijas.
 export const config = {
-  brandName: "Café Andino",
-  tagline: "Café de especialidad colombiano, directo de la finca a tu taza.",
-  accentColor: "#f28d27",
-  itemsTitle: "Nuestros productos",
-  agentName: "Lua",
+  brandName: "",
+  tagline: "",
+  accentColor: "#EA580C",
+  itemsTitle: "Rutinas y clases",
+  agentName: "Coach semanal",
 };

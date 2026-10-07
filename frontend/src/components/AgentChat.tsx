@@ -5,7 +5,7 @@ import type { ChatMessage } from "../types";
 
 export function AgentChat() {
   const [messages, setMessages] = useState<ChatMessage[]>([
-    { role: "assistant", content: `¡Hola! Soy ${config.agentName}, el asistente de ${config.brandName}. ¿En qué te ayudo?` },
+    { role: "assistant", content: `¡Hola! Soy tu coach${config.brandName ? ` de ${config.brandName}` : ""}. Cuéntame tu nivel, tu objetivo y cuántos días puedes entrenar para armar tu rutina semanal.` },
   ]);
   const [input, setInput] = useState("");
   const [thinking, setThinking] = useState(false);
@@ -32,9 +32,9 @@ export function AgentChat() {
   };
 
   return (
-    <aside className="card chat">
-      <h2>🤖 {config.agentName}</h2>
-      <div className="messages">
+    <aside className="card chat" aria-labelledby="coach-title">
+      <h2 id="coach-title">{config.agentName}</h2>
+      <div className="messages" role="log" aria-live="polite" aria-label="Conversación con el coach">
         {messages.map((m, i) => (
           <p key={i} className={`bubble ${m.role}`}>
             {m.content}
@@ -42,10 +42,11 @@ export function AgentChat() {
         ))}
         {thinking && <p className="bubble assistant muted">Pensando…</p>}
       </div>
-      {error && <p className="error">{error}</p>}
+      {error && <p className="error" role="alert">{error}</p>}
+      <label htmlFor="coach-message">Tu mensaje</label>
       <form onSubmit={send} className="chat-form">
-        <input value={input} onChange={(e) => setInput(e.target.value)} placeholder="Escribe tu pregunta…" />
-        <button className="primary" disabled={thinking}>
+        <input id="coach-message" value={input} onChange={(e) => setInput(e.target.value)} placeholder="Quiero entrenar tres días…" disabled={thinking} />
+        <button className="primary" disabled={thinking || !input.trim()}>
           Enviar
         </button>
       </form>

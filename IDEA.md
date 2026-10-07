@@ -3,21 +3,25 @@
 > Completa este archivo con ayuda de tu asistente de código. Él lo lee antes de cada tarea (ver AGENTS.md).
 
 ## ¿Qué es?
-<!-- Una frase. Ej: Tienda online de café de especialidad colombiano. -->
+Una app de gimnasio con un catálogo de rutinas o clases y un coach que arma tu rutina semanal.
 
 ## ¿Para quién?
-<!-- Quién lo va a usar. -->
+Personas de todos los niveles de entrenamiento: principiantes, intermedias y avanzadas.
 
 ## Elementos que maneja
-<!-- Qué guarda tu proyecto y sus campos. Ej: Productos con nombre, descripción, categoría y precio. -->
+Rutinas o clases con los campos de la plantilla:
+- `name`: nombre de la rutina o clase.
+- `description`: descripción de la rutina o clase.
+- `category`: tipo de entrenamiento, como fuerza, cardio o yoga.
+- `price`: valor de la clase.
 
 ## Dato extra
-<!-- Un campo nuevo que tendrá cada elemento, con su tipo. Ej: stock (número entero). -->
+`level` (texto): nivel de la rutina o clase. Valores: `principiante`, `intermedio` o `avanzado`.
 
 ## Marca
-- Nombre:
-- Eslogan:
-- Color principal (hex):
+- Nombre: sin definir; debe ser fácil de configurar desde código.
+- Eslogan: pendiente de definir; debe ser fácil de configurar desde código.
+- Color principal (hex): #EA580C (naranja).
 
 ## Asistente de mi producto (bonus)
-<!-- Qué haría el chat dentro de tu app. Ej: Recomienda cafés según el gusto del cliente. -->
+Un coach que arma la rutina semanal del usuario utilizando las rutinas o clases del catálogo y teniendo en cuenta su nivel de entrenamiento.
